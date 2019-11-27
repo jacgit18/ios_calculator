@@ -18,9 +18,9 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Calculator'),
     );
   }
 }
@@ -45,15 +45,26 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  String t1,t2;
 
   void _incrementCounter() {
     setState(() {
+      onChanged: (text){
+        t1 = text;
+      };
+
+      onChanged: (text){
+        t2 = text;
+      };
+
+      print('t1:' + t1 + 't2:' + t2);
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
+
     });
   }
 
@@ -98,13 +109,36 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.display1,
             ),
+            TextField(
+
+              decoration: InputDecoration(
+                labelText: 'Enter second number',
+                border: OutlineInputBorder() ,
+                hintText: 'Type Something',
+              ),
+              onChanged: (text){
+                t2 = text;
+              },
+            ),
+            TextField(
+
+              decoration: InputDecoration(
+                labelText: 'Enter first number',
+                border: OutlineInputBorder() ,
+                hintText: 'Type Something',
+              ),
+              onChanged: (text){
+                t1 = text;
+              },
+            ),
+            Text(t1),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        child: Icon(Icons.add),
+        child: Icon(Icons.local_car_wash),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
