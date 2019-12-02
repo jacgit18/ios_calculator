@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -85,21 +84,38 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(height: 20,),
             TextField(
               decoration: InputDecoration(
-                  labelText: 'Enter Second Number',
+                  labelText: 'Enter Service',
                   border: OutlineInputBorder(),
-                  hintText: 'Please go ahead and type something in'
+                  hintText: 'g-good, a-alright, n-notbad, p-poor'
+              ),
+              onChanged: (text) {
+                t1 = text;
+                //n2 = double.parse(t2);
+              },
+            ),
+            TextField(
+              decoration: InputDecoration(
+                  labelText: 'Enter the bill',
+                  border: OutlineInputBorder(),
+                  hintText: 'How much is the bill'
               ),
               onChanged: (text) {
                 t2 = text;
                 n2 = double.parse(t2);
               },
             ),
-            Text(output),
-            FlatButton(onPressed: _incrementCounter, child: Text("Calculate"),
-              color: Colors.orange,),
 
+
+
+            Text(output),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton
+      (
+        onPressed: _incrementCounter,
+        tooltip: 'Find Tip',
+        child: Icon(Icons.star),
       ),
 
     );
