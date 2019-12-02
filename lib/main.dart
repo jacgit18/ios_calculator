@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.red,
       ),
-      home: MyHomePage(title: 'Joshua Carpentier - Calculator'),
+      home: MyHomePage(title: 'Joshua Carpentier - Tip Calculator'),
     );
   }
 }
@@ -31,24 +31,15 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   String t1, t2, output = '';
   double n1, n2;
-  Calculate calc = Calculate(num1: 8, num2: 2);
+  TipCalculator calc = TipCalculator(service: 'g', bill: 100 );
 
   void _incrementCounter() {
     setState(() {
 
       _counter++;
-      onChanged: (text) {
-        t1 = text;
-      };
-      onChanged: (text) {
-        t2 = text;
-      };
 
-      print(calc.sum(8 ,2 ) + " " + calc.subtract(8, 2));
 
-      output=calc.sum(n1, n2) + ' . ' + calc.subtract(n1, n2)
-          + ' . ' + calc.multiply(n1, n2) + ' . ' + calc.divide(n1, n2) + ' . ' +
-          calc.average(n1, n2);
+
 
 
     });
@@ -122,33 +113,23 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class Calculate{
-  double num1, num2, result=0;
-  Calculate({this.num1, this.num2});
+class TipCalculator{
+  double bill, tiprate;
+  String service, result;
+  TipCalculator({this.bill, this.service});
 
-  String sum(double num1, double num2) {
-    result = num1 + num2;
-    return "The sum is: " + result.toString();
+  String tip( bill, service) {
+  if (service == 'g')
+      tiprate = 0.25;
+    else if (service == 'a')
+    tiprate = 0.15;
+    else if (service == 'n'){
+      tiprate = 0.10;
+    else if (service == 'p')
+      tiprate = 0;
+
+    return 'Tip is ' \$
   }
 
-  String multiply(double num1, double num2) {
-    result = num1 * num2;
-    return "The multiplication is: " + result.toString();
-  }
-
-  String divide(double num1, double num2) {
-    result = num1 / num2;
-    return "The quotient is: " + result.toString();
-  }
-
-  String average(double num1, double num2) {
-    result = (num1 + num2)/2;
-    return "The average is: " + result.toString();
-  }
-
-  String subtract(double num1, double num2) {
-    result = (num1 - num2);
-    return "The subtraction is: " + result.toString();
-  }
 
 }
