@@ -29,7 +29,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  String t1, t2, output = '';
+  String t1, t2, result = '';
   double n1, n2;
   TipCalculator calc = TipCalculator(service: 'g', bill: 100 );
 
@@ -37,9 +37,8 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
 
       _counter++;
-
-
-
+      print('t1 = ' + t1 + 't2 = ' +t2);
+      result = calc.tip(n2, t1);
 
 
     });
@@ -59,7 +58,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-
+            Text(result,style: TextStyle(fontSize: 29.0, fontFamily: 'Verdana',
+            color: Colors.green),),
             TextField(
               decoration: InputDecoration(
                   labelText: 'Enter First Number',
@@ -77,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
               decoration: InputDecoration(
                   labelText: 'Enter Service',
                   border: OutlineInputBorder(),
-                  hintText: 'g-good, a-alright, n-notbad, p-poor'
+                  hintText: 'g-good, a-alright, n-not bad, p-poor'
               ),
               onChanged: (text) {
                 t1 = text;
@@ -96,9 +96,6 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
 
-
-
-            Text(output),
           ],
         ),
       ),
@@ -115,20 +112,20 @@ class _MyHomePageState extends State<MyHomePage> {
 
 class TipCalculator{
   double bill, tiprate;
-  String service, result;
+  String service, result = '';
   TipCalculator({this.bill, this.service});
 
   String tip( bill, service) {
-  if (service == 'g')
+    if (service == 'g' || service == 'good')
       tiprate = 0.25;
-    else if (service == 'a')
-    tiprate = 0.15;
-    else if (service == 'n'){
-      tiprate = 0.10;
-    else if (service == 'p')
-      tiprate = 0;
+    else if (service == 'a' || service == 'alright')
+      tiprate = 0.15;
+    else if (service == 'n' || service == 'not bad')
+        tiprate = 0.10;
+    else if (service == 'p' || service == 'poor')
+        tiprate = 0;
 
-    return 'Tip is ' \$
+    return 'Tip is  \$' + (bill * tiprate ).toString() + '.';
   }
 
 
