@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.red,
       ),
-      home: MyHomePage(title: 'Joshua Carpentier - Calculator'),
+      home: MyHomePage(title: 'Joshua Carpentier - Degree Calculator'),
     );
   }
 }
