@@ -1,18 +1,30 @@
 import 'package:flutter/material.dart';
 
+//Design a flutter app that takes an input from the user in Celsius unit and
+// displays Kelvin equivalent of the Celsius number entered. You can use
+// K= (C+273) formula to convert from Celsius to Kelvin.
+//
+//Also, If it is higher than 30 degrees Celsius, then it should say "Hot",
+// if it is higher than 18 degrees Celsius, then it should say "Warm", if it is
+// higher than 0 degrees Celsius, then it should says "Cold", it it is less than
+// 0, then it should say "Very Cold", if it is less than -20, then it should say
+// "Extreme Cold".
+
+//Submit your code and your screen prints with your names written on them.
+
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
 
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.lightGreen,
       ),
-      home: MyHomePage(title: 'Joshua Carpentier - Degree Calculator'),
+      home: MyHomePage(title: 'Joshua Carpentier - Degree Calculator Convertor'),
     );
   }
 }
@@ -30,27 +42,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  String t1, t2, output = '';
-  double n1, n2;
-  Calculate calc = Calculate(num1: 8, num2: 2);
+  String output = 'its raining';
+  double input = 0 ;
+  int K =0,  C = 0,n1 = 0, n2 = 0;
+  String t1, t2;
+  Convert calc = Convert();//
 
   void _incrementCounter() {
     setState(() {
-
+      output = calc.doit(input);
       _counter++;
-      onChanged: (text) {
-        t1 = text;
-      };
-      onChanged: (text) {
-        t2 = text;
-      };
-
-      print(calc.sum(8 ,2 ) + " " + calc.subtract(8, 2));
-
-      output=calc.sum(n1, n2) + ' . ' + calc.subtract(n1, n2)
-          + ' . ' + calc.multiply(n1, n2) + ' . ' + calc.divide(n1, n2) + ' . ' +
-          calc.average(n1, n2);
-
 
     });
   }
@@ -69,34 +70,28 @@ class _MyHomePageState extends State<MyHomePage> {
 
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-
-            TextField(
-              decoration: InputDecoration(
-                  labelText: 'Enter First Number',
-                  border: OutlineInputBorder(),
-                  hintText: 'Please go ahead and type something in'
+            Text('it is raining',
+            style: TextStyle(fontFamily: 'Courier',
+            backgroundColor: Colors.black,
+            color: Colors.blueAccent,
+            fontSize: 30,
               ),
-              onChanged: (text) {
-                t1 = text;
-                n1 = double.parse(t1);
-              },
             ),
-
-            SizedBox(height: 20,),
+            SizedBox(height: 15.0),
             TextField(
               decoration: InputDecoration(
-                  labelText: 'Enter Second Number',
+                  labelText: 'Enter Temp in Celcius',
                   border: OutlineInputBorder(),
-                  hintText: 'Please go ahead and type something in'
+//                  hintText: 'Please go ahead and type something in'
               ),
+              keyboardType: TextInputType.number,
               onChanged: (text) {
-                t2 = text;
-                n2 = double.parse(t2);
+                input = double.parse(text);
               },
             ),
             Text(output),
-            FlatButton(onPressed: _incrementCounter, child: Text("Calculate"),
-              color: Colors.orange,),
+            FlatButton(onPressed: _incrementCounter, child: Text("Convert"),
+              color: Colors.deepOrange,textColor: Colors.yellow,),
 
           ],
         ),
@@ -106,33 +101,18 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class Calculate{
-  double num1, num2, result=0;
-  Calculate({this.num1, this.num2});
+class Convert{
+  double K, C;
+  double Celcius;
+  String result;
+  String output;
 
-  String sum(double num1, double num2) {
-    result = num1 + num2;
-    return "The sum is: " + result.toString();
+  Convert({this.Celcius, this.output});
+
+  String doit(Celcius) {
+    return (273 + (Celcius)).toString();
   }
 
-  String multiply(double num1, double num2) {
-    result = num1 * num2;
-    return "The multiplication is: " + result.toString();
-  }
 
-  String divide(double num1, double num2) {
-    result = num1 / num2;
-    return "The quotient is: " + result.toString();
-  }
-
-  String average(double num1, double num2) {
-    result = (num1 + num2)/2;
-    return "The average is: " + result.toString();
-  }
-
-  String subtract(double num1, double num2) {
-    result = (num1 - num2);
-    return "The subtraction is: " + result.toString();
-  }
 
 }
