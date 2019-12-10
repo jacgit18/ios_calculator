@@ -102,15 +102,21 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class Convert{
-  double K, C;
   double Celcius;
-  String result;
-  String output;
+  String result, output, cuny = '' ;
 
   Convert({this.Celcius, this.output});
 
   String doit(Celcius) {
-    return (273 + (Celcius)).toString();
+    if (Celcius >= 30.0 ) cuny='Hot';
+    else if (Celcius <= 30.0 && Celcius > 18.0) cuny = 'Warm';
+    else if (Celcius <= 18.0 && Celcius > 0) cuny = 'Cold';
+    else if (Celcius <= -20.0) cuny = 'Extreme Cold';
+
+
+
+
+    return (273 + (Celcius)).toString() + " " + cuny;
   }
 
 
