@@ -46,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
   double input = 0 ;
   int K =0,  C = 0,n1 = 0, n2 = 0;
   String t1, t2;
-  Convert calc = Convert();//
+  Convert calc = Convert(Celcius: 33, output: "test");//
 
   void _incrementCounter() {
     setState(() {
@@ -70,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('it is raining',
+            Text(output,
             style: TextStyle(fontFamily: 'Courier',
             backgroundColor: Colors.black,
             color: Colors.blueAccent,
