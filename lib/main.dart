@@ -42,7 +42,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  String output = 'its raining';
+  String output = ' ';
   double input = 0 ;
   int K =0,  C = 0,n1 = 0, n2 = 0;
   String t1, t2;
