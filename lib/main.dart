@@ -74,8 +74,8 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text(output,
             style: TextStyle(fontFamily: 'Courier',
-            backgroundColor: Colors.black,
-            color: a,
+            backgroundColor: a,
+            color: Colors.black,
             fontSize: 30,
               ),
             ),
