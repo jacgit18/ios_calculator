@@ -46,11 +46,13 @@ class _MyHomePageState extends State<MyHomePage> {
   double input = 0 ;
   int K =0,  C = 0,n1 = 0, n2 = 0;
   String t1, t2;
+  Color a;
   Convert calc = Convert(Celcius: 33, output: "test");//
 
   void _incrementCounter() {
     setState(() {
       output = calc.doit(input);
+      a = calc.clr(input);
       _counter++;
 
     });
@@ -73,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(output,
             style: TextStyle(fontFamily: 'Courier',
             backgroundColor: Colors.black,
-            color: Colors.blueAccent,
+            color: a,
             fontSize: 30,
               ),
             ),
@@ -104,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
 class Convert{
   double Celcius;
   String result, output, cuny = '' ;
-
+  Color a = Colors.orange;
   Convert({this.Celcius, this.output});
 
   String doit(Celcius) {
@@ -113,12 +115,16 @@ class Convert{
     else if (Celcius <= 18.0 && Celcius > 0) cuny = 'Cold';
     else if (Celcius <= -20.0) cuny = 'Extreme Cold';
 
-
-
-
     return (273 + (Celcius)).toString() + " " + cuny;
   }
 
 
+  Color clr(Celcius) {
+    if (Celcius >= 30.0 ) a = Colors.red;
+    else if (Celcius <= 30.0 && Celcius > 18.0)  a = Colors.orange;
+    else if (Celcius <= 18.0 && Celcius > 0)  a = Colors.green;
+    else if (Celcius <= -20.0)  a = Colors.blue;
 
+    return a;
+  }
 }
