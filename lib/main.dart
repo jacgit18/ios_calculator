@@ -1,16 +1,6 @@
 import 'package:flutter/material.dart';
 
-//Design a flutter app that takes an input from the user in Celsius unit and
-// displays Kelvin equivalent of the Celsius number entered. You can use
-// K= (C+273) formula to convert from Celsius to Kelvin.
-//
-//Also, If it is higher than 30 degrees Celsius, then it should say "Hot",
-// if it is higher than 18 degrees Celsius, then it should say "Warm", if it is
-// higher than 0 degrees Celsius, then it should says "Cold", it it is less than
-// 0, then it should say "Very Cold", if it is less than -20, then it should say
-// "Extreme Cold".
 
-//Submit your code and your screen prints with your names written on them.
 
 
 void main() => runApp(MyApp());
@@ -24,7 +14,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.lightGreen,
       ),
-      home: MyHomePage(title: 'Joshua Carpentier - Degree Calculator Convertor'),
+      home: MyHomePage(title: 'Joshua Carpentier - Loan Calculator'),
     );
   }
 }
