@@ -118,12 +118,24 @@ class Calculate{
     count = 0;
     output = output + '\n Weeks: ' + count.toString() + ' .Amount \$' + amount.toString();
 
-    while(amount >= 0){
+
+    while(amount > 0){
+
       amount = amount - weekly;
       count = count + 1;
       output = output + '\n Weeks: ' + count.toString() + ' .Amount \$' + amount.toString();
 
+      if (amount<weekly) {
+        count = count + 1;
+        amount = 0;
+
+        output = output + '\n Weeks: ' + count.toString() + ' .Amount \$' +
+            amount.toString();
+        amount = 0;
+
+      }count++;
     }
+
     return output;
   }
 
