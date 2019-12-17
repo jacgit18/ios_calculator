@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -31,17 +28,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   String output = ' ';
-  double input = 0 ;
+  double weekly =0, amount = 0 ;
   int K =0,  C = 0,n1 = 0, n2 = 0;
   String t1, t2;
-  Convert calc = Convert(Celcius: 33, output: "test");//
+  Calculate calc = Calculate(amount: 33, weekly: 32);//
 
   void _incrementCounter() {
     setState(() {
-      output = calc.doit(input);
-      _counter++;
+      output = calc.doit(amount, weekly);
 
     });
   }
@@ -63,25 +58,43 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(output,
             style: TextStyle(fontFamily: 'Courier',
             backgroundColor: Colors.black,
-            color: Colors.blueAccent,
-            fontSize: 30,
+            color: Colors.green,
+            fontSize: 20,
               ),
             ),
-            SizedBox(height: 15.0),
+            SizedBox(height: 8.0),
             TextField(
               decoration: InputDecoration(
-                  labelText: 'Enter Temp in Celcius',
-                  border: OutlineInputBorder(),
+                border: OutlineInputBorder(),
+                labelText: 'Enter Loan Amount',
+                  fillColor: Colors.lightGreen,
 //                  hintText: 'Please go ahead and type something in'
               ),
               keyboardType: TextInputType.number,
               onChanged: (text) {
-                input = double.parse(text);
+                amount = double.parse(text);
+              },
+            ), SizedBox(height: 8.0),
+            TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Enter Weekly Payment Amount',
+                fillColor: Colors.lightGreen,
+//                  hintText: 'Please go ahead and type something in'
+              ),
+              keyboardType: TextInputType.number,
+              onChanged: (text) {
+                weekly = double.parse(text);
               },
             ),
-            Text(output),
-            FlatButton(onPressed: _incrementCounter, child: Text("Convert"),
-              color: Colors.deepOrange,textColor: Colors.yellow,),
+            Container(
+              child: FlatButton(onPressed: _incrementCounter,
+                child: Text("Calculate Loan")),
+            margin: EdgeInsets.all(15.0),
+            padding: EdgeInsets.all(3.0),
+             decoration: BoxDecoration(border: Border.all(
+               color: Colors.deepOrange)),),
+
 
           ],
         ),
@@ -91,26 +104,35 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class Convert{
-  double Celcius;
-  String result, output, cuny = '' ;
+class Calculate{
+  double amount;
+  double weekly;
+  String output = '' ;
+  int count;
+  String cuny = '';
   Color a = Colors.orange;
-  Convert({this.Celcius, this.output});
+  Calculate({this.amount, this.weekly});
 
-  String doit(Celcius) {
-    if (Celcius >= 30.0 ) cuny='Hot';
-    else if (Celcius <= 30.0 && Celcius > 18.0) cuny = 'Warm';
-    else if (Celcius <= 18.0 && Celcius > 0) cuny = 'Cold';
-    else if (Celcius <= -20.0) cuny = 'Extreme Cold';
-    return (273 + (Celcius)).toString() + " " + cuny;
+  String doit(amount, weekly) {
+    output = '';
+    count = 0;
+    output = output + '\n Weeks: ' + count.toString() + ' .Amount \$' + amount.toString();
+
+    while(amount >= 0){
+      amount = amount - weekly;
+      count = count + 1;
+      output = output + '\n Weeks: ' + count.toString() + ' .Amount \$' + amount.toString();
+
+    }
+    return output;
   }
 
-  Color clr(Celcius){
-    if (Celcius >= 30.0 ) cuny='Hot';
-    else if (Celcius <= 30.0 && Celcius > 18.0) cuny = 'Warm';
-    else if (Celcius <= 18.0 && Celcius > 0) cuny = 'Cold';
-    else if (Celcius <= -20.0) cuny = 'Extreme Cold';
-//    return (273 + (Celcius)).toString() + " " + cuny;
-  }
+//  Color clr(amount){
+//    if (Celcius >= 30.0 ) cuny='Hot';
+//    else if (Celcius <= 30.0 && Celcius > 18.0) cuny = 'Warm';
+//    else if (Celcius <= 18.0 && Celcius > 0) cuny = 'Cold';
+//    else if (Celcius <= -20.0) cuny = 'Extreme Cold';
+////    return (273 + (Celcius)).toString() + " " + cuny;
+//  }
 
 }
