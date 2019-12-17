@@ -30,8 +30,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String output = ' ';
   double weekly =0, amount = 0 ;
-  int K =0,  C = 0,n1 = 0, n2 = 0;
-  String t1, t2;
   Calculate calc = Calculate(amount: 33, weekly: 32);//
 
   void _incrementCounter() {
@@ -138,13 +136,5 @@ class Calculate{
 
     return output;
   }
-
-//  Color clr(amount){
-//    if (Celcius >= 30.0 ) cuny='Hot';
-//    else if (Celcius <= 30.0 && Celcius > 18.0) cuny = 'Warm';
-//    else if (Celcius <= 18.0 && Celcius > 0) cuny = 'Cold';
-//    else if (Celcius <= -20.0) cuny = 'Extreme Cold';
-////    return (273 + (Celcius)).toString() + " " + cuny;
-//  }
 
 }
