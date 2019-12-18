@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.lightGreen,
       ),
-      home: MyHomePage(title: 'Joshua Carpentier - Loan Calculator'),
+      home: MyHomePage(title: 'Joshua Carpentier - Degree Converter'),
     );
   }
 }
@@ -29,12 +30,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String output = ' ';
-  double weekly =0, amount = 0 ;
-  Calculate calc = Calculate(amount: 33, weekly: 32);//
+  double Celcius =0, Fahrenheit = 0 ;
+  Calculate calc = Calculate(Fahrenheit: 33, Celcius: 32);//
 
   void _incrementCounter() {
     setState(() {
-      output = calc.doit(amount, weekly);
+      output = calc.doit(Fahrenheit, Celcius);
 
     });
   }
@@ -57,37 +58,25 @@ class _MyHomePageState extends State<MyHomePage> {
             style: TextStyle(fontFamily: 'Courier',
             backgroundColor: Colors.black,
             color: Colors.green,
-            fontSize: 20,
+            fontSize: 25,
               ),
             ),
             SizedBox(height: 8.0),
             TextField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: 'Enter Loan Amount',
+                labelText: 'Enter Fahrenheit ',
                   fillColor: Colors.lightGreen,
 //                  hintText: 'Please go ahead and type something in'
               ),
               keyboardType: TextInputType.number,
               onChanged: (text) {
-                amount = double.parse(text);
-              },
-            ), SizedBox(height: 8.0),
-            TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Enter Weekly Payment Amount',
-                fillColor: Colors.lightGreen,
-//                  hintText: 'Please go ahead and type something in'
-              ),
-              keyboardType: TextInputType.number,
-              onChanged: (text) {
-                weekly = double.parse(text);
+                Fahrenheit = double.parse(text);
               },
             ),
             Container(
               child: FlatButton(onPressed: _incrementCounter,
-                child: Text("Calculate Loan")),
+                child: Text("Convert To Celcius")),
             margin: EdgeInsets.all(15.0),
             padding: EdgeInsets.all(3.0),
              decoration: BoxDecoration(border: Border.all(
@@ -103,36 +92,21 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class Calculate{
-  double amount;
-  double weekly;
+  // C= (F-32) * 5/9
+  double Fahrenheit;
+  double Celcius;
   String output = '' ;
   int count;
-  String cuny = '';
-  Color a = Colors.orange;
-  Calculate({this.amount, this.weekly});
+  String temp = '';
+  Calculate({this.Fahrenheit, this.Celcius});
 
-  String doit(amount, weekly) {
+  String doit(Fahrenheit, Celcius) {
+    Celcius = (Fahrenheit - 32) * 5/9;
     output = '';
-    count = 0;
-    output = output + '\n Weeks: ' + count.toString() + ' .Amount \$' + amount.toString();
 
-
-    while(amount > 0){
-
-      amount = amount - weekly;
-      count = count + 1;
-      output = output + '\n Weeks: ' + count.toString() + ' .Amount \$' + amount.toString();
-
-      if (amount<weekly) {
-        count = count + 1;
-        amount = 0;
-
-        output = output + '\n Weeks: ' + count.toString() + ' .Amount \$' +
-            amount.toString();
-        amount = 0;
-
-      }count++;
-    }
+    if (Celcius >= 100.0 ) output = Celcius.toStringAsFixed(1) + ' Water Gas State ';
+    else if (Celcius < 100.0  && Celcius > 0.0)  output = Celcius.toStringAsFixed(1) + ' Water in Liquid State ';
+    else if (Celcius < 0.0  ) output = Celcius.toStringAsFixed(1) + ' Water is in Solid State ';
 
     return output;
   }
